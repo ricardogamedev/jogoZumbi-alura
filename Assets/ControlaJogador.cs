@@ -14,5 +14,6 @@ public class ControlaJogador : MonoBehaviour
 
         transform.Translate(direcao);
 
+
     }
 }

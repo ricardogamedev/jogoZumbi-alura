@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ControlaJogador : MonoBehaviour
 {
-    // Update is called once per frame
+
+    public float velocidade = 10;
     void Update()
     {
         float eixoX = Input.GetAxis("Horizontal");
@@ -12,8 +13,16 @@ public class ControlaJogador : MonoBehaviour
 
         Vector3 direcao = new Vector3(eixoX, 0, eixoZ);
 
-        transform.Translate(direcao);
+        transform.Translate(direcao * velocidade * Time.deltaTime);
 
 
+        if (direcao != Vector3.zero)
+        {
+            GetComponent<Animator>().SetBool("Movendo", true);
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("Movendo", false);
+        }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlaJogador : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float velocidade = 10;
     Vector3 direcao;
@@ -27,7 +27,7 @@ public class ControlaJogador : MonoBehaviour
      void FixedUpdate()
     {
         GetComponent<Rigidbody>().MovePosition
-          (GetComponent<Rigidbody>().position +
-          (direcao * velocidade * Time.deltaTime));
+            (GetComponent<Rigidbody>().position + 
+            (direcao * velocidade * Time.deltaTime));
     }
 }

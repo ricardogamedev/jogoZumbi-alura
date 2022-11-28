@@ -662,6 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bala: {fileID: 2317918591754602903, guid: b6f02eed497112948b3fb2f929f618fe, type: 3}
+  CanoDaArma: {fileID: 1506388445}
 --- !u!4 &878848262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4610746654156704, guid: 4b3bb44effa49480d8d18049684cc33a,

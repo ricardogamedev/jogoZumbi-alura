@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public GameObject bala;
+    public GameObject CanoDaArma;
     void Start()
     {
         
@@ -15,7 +16,7 @@ public class GunController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bala, transform.position, transform.rotation);
+            Instantiate(bala, CanoDaArma.transform.position, CanoDaArma.transform.rotation);
         }
     }
 

@@ -1,20 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float velocidade = 10;
     Vector3 direcao;
     public LayerMask mascaraChao;
-    public GameObject textoGameOver;
-    public bool vivo = true;
-
-    private void Start()
-    {
-        Time.timeScale = 1;
-    }
 
     void Update()
     {
@@ -29,14 +21,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             GetComponent<Animator>().SetBool("Movendo", false);
-        }
-
-        if(!vivo)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                SceneManager.LoadScene("motel");
-            }
         }
     }
 

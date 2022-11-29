@@ -51,6 +51,7 @@ public class EnemyController : MonoBehaviour
 
     void AtacaJogador()
     {
+        //teste commit 
         Time.timeScale = 0;
         player.GetComponent<PlayerController>().textoGameOver.SetActive(true);
         player.GetComponent<PlayerController>().vivo = false;

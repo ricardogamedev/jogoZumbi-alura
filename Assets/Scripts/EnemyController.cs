@@ -6,21 +6,20 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject player;
     public float velocidade = 5;
+    private Rigidbody rigidbodyEnemy;
+    private Animator  animatorEnemy;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         int geraTipoZumbi = Random.Range(1, 28);
         transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+        rigidbodyEnemy = GetComponent<Rigidbody>();
+        animatorEnemy = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
     void FixedUpdate()
     {
         float distancia = Vector3.Distance(transform.position, player.transform.position);
@@ -28,24 +27,24 @@ public class EnemyController : MonoBehaviour
         Vector3 direcao = player.transform.position - transform.position;
 
         Quaternion novaRotacao = Quaternion.LookRotation(direcao);
-        GetComponent<Rigidbody>().MoveRotation(novaRotacao);
+        rigidbodyEnemy.MoveRotation(novaRotacao);
 
         if (distancia > 2.5)
         {
 
-            GetComponent<Rigidbody>().MovePosition
-                (GetComponent<Rigidbody>().position +
+            rigidbodyEnemy.MovePosition
+                (rigidbodyEnemy.position +
                direcao.normalized * velocidade * Time.deltaTime);
 
             //Quaternions are used to represent rotations. 
-            GetComponent<Rigidbody>().MoveRotation(novaRotacao);
+            rigidbodyEnemy.MoveRotation(novaRotacao);
 
-            GetComponent<Animator>().SetBool("Atacando", false);
+            animatorEnemy.SetBool("Atacando", false);
 
         }
         else
         {
-            GetComponent<Animator>().SetBool("Atacando", true);
+            animatorEnemy.SetBool("Atacando", true);
         }
     }
 

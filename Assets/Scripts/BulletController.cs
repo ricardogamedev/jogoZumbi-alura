@@ -6,11 +6,16 @@ public class BulletController : MonoBehaviour
 {
 
     public float velocidade = 20;
+    private Rigidbody rigidbodybullet;
     // fixed update porque vou usar um Rigidbody na bala
 
+    private void Start()
+    {
+        rigidbodybullet = GetComponent<Rigidbody>();
+    }
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position +
+        rigidbodybullet.MovePosition(rigidbodybullet.position +
             transform.forward * velocidade * Time.deltaTime);
     }
 

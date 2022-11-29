@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c835c082e62b8a343bcb1abb6909e485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zumbi: {fileID: 1063500868937916}
+  zumbi: {fileID: 0}
   tempoGerarZumbi: 1
 --- !u!1 &1065480718027956
 GameObject:

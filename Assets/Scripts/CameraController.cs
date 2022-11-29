@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
-    Vector3 distanciaDoPlayer;
+    private Vector3 distanciaDoPlayer;
    
     void Start()
     {

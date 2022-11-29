@@ -6,7 +6,7 @@ public class ZombieGenerator : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject zumbi;
-    float contadorTempo = 0;
+    private float contadorTempo = 0;
     public float tempoGerarZumbi = 1;
     void Start()
     {

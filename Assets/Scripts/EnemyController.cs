@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -45,6 +45,13 @@ public class EnemyController : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("Atacando", true);
         }
+    }
+
+    void AtacaJogador()
+    {
+        Time.timeScale = 0;
+        player.GetComponent<PlayerController>().textoGameOver.SetActive(true);
+        player.GetComponent<PlayerController>().vivo = false;
     }
 
 

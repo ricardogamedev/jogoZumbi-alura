@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
     public float velocidade = 5;
     private Rigidbody rigidbodyEnemy;
-    private Animator  animatorEnemy;
+    private Animator animatorEnemy;
 
 
     void Start()
@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
         animatorEnemy = GetComponent<Animator>();
     }
 
-   
+
     void FixedUpdate()
     {
         float distancia = Vector3.Distance(transform.position, player.transform.position);
@@ -50,11 +50,9 @@ public class EnemyController : MonoBehaviour
 
     void AtacaJogador()
     {
-        Time.timeScale = 0;
-        player.GetComponent<PlayerController>().textoGameOver.SetActive(true);
-        player.GetComponent<PlayerController>().vivo = false;
+        int dano = Random.Range(20, 30);
+        player.GetComponent<PlayerController>().TomarDano(dano);
     }
 
 
 }
-

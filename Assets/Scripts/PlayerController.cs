@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public int Vida = 100;
     public InterfaceController scriptInterfaceController;
 
-    private void Start()
+    private void Awake()
     {
         animatorPlayer = GetComponent<Animator>();
         rigidbodyPlayer = GetComponent<Rigidbody>();

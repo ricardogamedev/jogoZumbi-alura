@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Animator animatorPlayer;
     public int Vida = 100;
     public InterfaceController scriptInterfaceController;
+    public AudioClip SomDeDano;
 
     private void Awake()
     {
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         Vida -= dano;
         scriptInterfaceController.AtualizarSliderVidaJogador();
+        AudioController.instancia.PlayOneShot(SomDeDano);
 
         if (Vida <= 0)
         {

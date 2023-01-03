@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-
     public float velocidade = 20;
     private Rigidbody rigidbodybullet;
+    public AudioClip SomDeMorte;
     // fixed update porque vou usar um Rigidbody na bala
 
     private void Start()
@@ -24,6 +24,7 @@ public class BulletController : MonoBehaviour
         if (objetoDeColisao.tag == "Inimigo")
         {
             Destroy(objetoDeColisao.gameObject);
+            AudioController.instancia.PlayOneShot(SomDeMorte);
         }
         //gameObject minúsculo pega quem está com o script 
         Destroy(gameObject);

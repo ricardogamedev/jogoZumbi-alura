@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 20
+  SomDeMorte: {fileID: 8300000, guid: 51d23f5b2960e30499af6b6bae923e38, type: 3}
 --- !u!54 &6624888219174883067
 Rigidbody:
   m_ObjectHideFlags: 0

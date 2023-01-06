@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 direcao;
     public LayerMask mascaraChao;
     public GameObject textoGameOver;
-    private Rigidbody rigidbodyPlayer;
+     private Rigidbody rigidbodyPlayer;
     private Animator animatorPlayer;
     public int Vida = 100;
     public InterfaceController scriptInterfaceController;
@@ -37,13 +37,16 @@ public class PlayerController : MonoBehaviour
             animatorPlayer.SetBool("Movendo", false);
         }
 
-        if (Vida <= 0)
+
+        if (Vida <=0)
         {
             if (Input.GetButtonDown("Fire1"))
             {
                 SceneManager.LoadScene("motel");
             }
         }
+
+
     }
 
     //ao invés de rodar a cada frame, ele roda a cada 0,02s por padrão
@@ -74,6 +77,7 @@ public class PlayerController : MonoBehaviour
     public void TomarDano(int dano)
     {
         Vida -= dano;
+
         scriptInterfaceController.AtualizarSliderVidaJogador();
         AudioController.instancia.PlayOneShot(SomDeDano);
 
@@ -81,6 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             Time.timeScale = 0;
             textoGameOver.SetActive(true);
+           
         }
     }
 }

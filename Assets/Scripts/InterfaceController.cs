@@ -9,10 +9,11 @@ public class InterfaceController : MonoBehaviour
     public Slider SliderVidaJogador;
     void Start()
     {
+        AtualizarSliderVidaJogador();
+
         scriptPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
         SliderVidaJogador.maxValue = scriptPlayerController.Vida;
-        AtualizarSliderVidaJogador();
     }
 
     // Update is called once per frame

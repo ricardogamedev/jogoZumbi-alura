@@ -51,7 +51,10 @@ public class EnemyController : MonoBehaviour
     void AtacaJogador()
     {
         int dano = Random.Range(20, 30);
+
         player.GetComponent<PlayerController>().TomarDano(dano);
+     
+
     }
 
 

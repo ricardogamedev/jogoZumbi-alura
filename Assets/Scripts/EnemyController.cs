@@ -6,8 +6,8 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject player;
     public float velocidade = 5;
-    private Rigidbody rigidbodyEnemy;
     private Animator animatorEnemy;
+    private CharacterMovement myEnemyMovement;
 
 
     void Start()
@@ -15,8 +15,8 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         int geraTipoZumbi = Random.Range(1, 28);
         transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
-        rigidbodyEnemy = GetComponent<Rigidbody>();
         animatorEnemy = GetComponent<Animator>();
+        myEnemyMovement = GetComponent<CharacterMovement>();
     }
 
 
@@ -26,19 +26,13 @@ public class EnemyController : MonoBehaviour
 
         Vector3 direcao = player.transform.position - transform.position;
 
-        Quaternion novaRotacao = Quaternion.LookRotation(direcao);
-        rigidbodyEnemy.MoveRotation(novaRotacao);
+        myEnemyMovement.Rotacionar(direcao);
 
         if (distancia > 2.5)
         {
-
-            rigidbodyEnemy.MovePosition
-                (rigidbodyEnemy.position +
-               direcao.normalized * velocidade * Time.deltaTime);
+            myEnemyMovement.Movimentar(direcao, velocidade);
 
             //Quaternions are used to represent rotations. 
-            rigidbodyEnemy.MoveRotation(novaRotacao);
-
             animatorEnemy.SetBool("Atacando", false);
 
         }
@@ -53,7 +47,7 @@ public class EnemyController : MonoBehaviour
         int dano = Random.Range(20, 30);
 
         player.GetComponent<PlayerController>().TomarDano(dano);
-     
+
 
     }
 

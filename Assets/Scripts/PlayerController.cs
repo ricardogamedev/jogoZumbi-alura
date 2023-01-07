@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IKillable
 {
-    public float velocidade = 10;
     private Vector3 direcao;
     public LayerMask mascaraChao;
     public GameObject textoGameOver;
-     private Rigidbody rigidbodyPlayer;
-    private Animator animatorPlayer;
-    public int Vida = 100;
     public InterfaceController scriptInterfaceController;
     public AudioClip SomDeDano;
+    private PlayerMovement myPlayerMovement;
+    private CharacterAnimation playerAnimation;
+    public Status playerStatus;
 
-    private void Awake()
+    private void Start()
     {
-        animatorPlayer = GetComponent<Animator>();
-        rigidbodyPlayer = GetComponent<Rigidbody>();
         Time.timeScale = 1;
+        myPlayerMovement = GetComponent<PlayerMovement>();
+        playerAnimation = GetComponent<CharacterAnimation>();
+        playerStatus = GetComponent<Status>();
     }
 
     void Update()
@@ -28,64 +28,40 @@ public class PlayerController : MonoBehaviour
         float eixoZ = Input.GetAxis("Vertical");
         direcao = new Vector3(eixoX, 0, eixoZ);
 
-        if (direcao != Vector3.zero)
-        {
-            animatorPlayer.SetBool("Movendo", true);
-        }
-        else
-        {
-            animatorPlayer.SetBool("Movendo", false);
-        }
+        //magnitude é o tamanho do meu vetor. Nesse caso [1,0,0] então a magnitude é 1
+        playerAnimation.Movimentar(direcao.magnitude);
 
-
-        if (Vida <=0)
+        if (playerStatus.Vida <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
             {
                 SceneManager.LoadScene("motel");
             }
         }
-
-
     }
-
     //ao invés de rodar a cada frame, ele roda a cada 0,02s por padrão
     void FixedUpdate()
     {
-        rigidbodyPlayer.MovePosition
-            (rigidbodyPlayer.position +
-            (direcao * velocidade * Time.deltaTime));
-
-        Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
-
-        RaycastHit impacto;
-
-        //quando eu uso um Raycasthit, eu preciso colocar esse out no parâmetro para avisar que vai entrar no if sem valor, mas lá dentro terá
-        if (Physics.Raycast(raio, out impacto, 100, mascaraChao))
-        {
-            Vector3 posicaoMiraJogador = impacto.point - transform.position;
-
-            posicaoMiraJogador.y = transform.position.y;
-
-            Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
-
-            rigidbodyPlayer.MoveRotation(novaRotacao);
-        }
+        myPlayerMovement.Movimentar(direcao, playerStatus.Velocidade);
+        myPlayerMovement.PlayerRotation(mascaraChao);
     }
 
     public void TomarDano(int dano)
     {
-        Vida -= dano;
+        playerStatus.Vida -= dano;
 
         scriptInterfaceController.AtualizarSliderVidaJogador();
         AudioController.instancia.PlayOneShot(SomDeDano);
 
-        if (Vida <= 0)
+        if (playerStatus.Vida <= 0)
         {
-            Time.timeScale = 0;
-            textoGameOver.SetActive(true);
-           
+            Morrer();
         }
+    }
+
+    public void Morrer()
+    {
+        Time.timeScale = 0;
+        textoGameOver.SetActive(true);
     }
 }

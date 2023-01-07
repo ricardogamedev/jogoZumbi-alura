@@ -23,8 +23,7 @@ public class BulletController : MonoBehaviour
     {
         if (objetoDeColisao.tag == "Inimigo")
         {
-            Destroy(objetoDeColisao.gameObject);
-            AudioController.instancia.PlayOneShot(SomDeMorte);
+            objetoDeColisao.GetComponent<EnemyController>().TomarDano(1);
         }
         //gameObject minúsculo pega quem está com o script 
         Destroy(gameObject);

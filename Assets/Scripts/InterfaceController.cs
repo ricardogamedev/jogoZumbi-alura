@@ -11,7 +11,7 @@ public class InterfaceController : MonoBehaviour
     {
         scriptPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
-        SliderVidaJogador.maxValue = scriptPlayerController.Vida;
+        SliderVidaJogador.maxValue = scriptPlayerController.playerStatus.Vida;
         AtualizarSliderVidaJogador();
 
     }
@@ -24,6 +24,6 @@ public class InterfaceController : MonoBehaviour
 
     public void AtualizarSliderVidaJogador()
     {
-        SliderVidaJogador.value = scriptPlayerController.Vida;
+        SliderVidaJogador.value = scriptPlayerController.playerStatus.Vida;
     }
 }

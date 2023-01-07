@@ -13269,10 +13269,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 878848257, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: SomDeDano
-      value: 
-      objectReference: {fileID: 8300000, guid: c75ee9c546a19c44599403b4e4cbd875, type: 3}
-    - target: {fileID: 878848257, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: textoGameOver
       value: 
       objectReference: {fileID: 874296486}
@@ -13280,14 +13276,6 @@ PrefabInstance:
       propertyPath: scriptInterfaceController
       value: 
       objectReference: {fileID: 1447524489}
-    - target: {fileID: 878848260, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 878848261, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: SomDoTiro
-      value: 
-      objectReference: {fileID: 8300000, guid: 747dbb61f6e192649a36c2b7812fd274, type: 3}
     - target: {fileID: 1884102019447498, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: m_Name
       value: Jogador
@@ -13335,6 +13323,11 @@ PrefabInstance:
     - target: {fileID: 4610746654156704, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988580395901699264, guid: 4b3bb44effa49480d8d18049684cc33a,
+        type: 3}
+      propertyPath: Velocidade
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}

@@ -2510,6 +2510,9 @@ GameObject:
   - component: {fileID: 878848259}
   - component: {fileID: 878848257}
   - component: {fileID: 878848261}
+  - component: {fileID: 460428172561400736}
+  - component: {fileID: 5693614053057764708}
+  - component: {fileID: 4988580395901699264}
   m_Layer: 0
   m_Name: Personagens
   m_TagString: Player
@@ -2569,7 +2572,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &878848258
 CapsuleCollider:
@@ -2620,6 +2623,10 @@ MonoBehaviour:
   mascaraChao:
     serializedVersion: 2
     m_Bits: 256
+  textoGameOver: {fileID: 0}
+  Vida: 100
+  scriptInterfaceController: {fileID: 0}
+  SomDeDano: {fileID: 8300000, guid: c75ee9c546a19c44599403b4e4cbd875, type: 3}
 --- !u!114 &878848261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,6 +2641,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bala: {fileID: 2317918591754602903, guid: b6f02eed497112948b3fb2f929f618fe, type: 3}
   CanoDaArma: {fileID: 1506388445}
+  SomDoTiro: {fileID: 8300000, guid: 747dbb61f6e192649a36c2b7812fd274, type: 3}
+--- !u!114 &460428172561400736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884102019447498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f55dcc1faad6d14db32cf8d411b0c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5693614053057764708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884102019447498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9520b53828fe864cbe7f1027fe1108d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4988580395901699264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884102019447498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d802f360bb0816d46b411ba4fbf5a2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VidaInicial: 100
+  Vida: 0
+  Velocidade: 5
 --- !u!1 &1938851689004064
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IKillable
 {
     public GameObject player;
-    public float velocidade = 5;
-    private Animator animatorEnemy;
     private CharacterMovement myEnemyMovement;
+    private CharacterAnimation enemyAnimation;
+    private Status enemyStatus;
+    public AudioClip SomDeMorte;
 
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        int geraTipoZumbi = Random.Range(1, 28);
-        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
-        animatorEnemy = GetComponent<Animator>();
+        enemyAnimation = GetComponent<CharacterAnimation>();
         myEnemyMovement = GetComponent<CharacterMovement>();
+        RandomizeZombies();
+        enemyStatus = GetComponent<Status>();
     }
 
 
@@ -30,15 +31,14 @@ public class EnemyController : MonoBehaviour
 
         if (distancia > 2.5)
         {
-            myEnemyMovement.Movimentar(direcao, velocidade);
+            myEnemyMovement.Movimentar(direcao, enemyStatus.Velocidade);
 
             //Quaternions are used to represent rotations. 
-            animatorEnemy.SetBool("Atacando", false);
-
+            enemyAnimation.Atacar(false);
         }
         else
         {
-            animatorEnemy.SetBool("Atacando", true);
+            enemyAnimation.Atacar(true);
         }
     }
 
@@ -51,5 +51,24 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    void RandomizeZombies()
+    {
+        int geraTipoZumbi = Random.Range(1, 28);
+        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+    }
 
+    public void TomarDano(int dano)
+    {
+        enemyStatus.Vida -= dano;
+        if(enemyStatus.Vida <= 0)
+        {
+            Morrer();
+        }
+    }
+
+    public void Morrer()
+    {
+        Destroy(gameObject);
+        AudioController.instancia.PlayOneShot(SomDeMorte);
+    }
 }

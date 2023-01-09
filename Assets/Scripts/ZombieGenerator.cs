@@ -8,21 +8,62 @@ public class ZombieGenerator : MonoBehaviour
     public GameObject zumbi;
     private float contadorTempo = 0;
     public float tempoGerarZumbi = 1;
-    void Start()
-    {
+    public LayerMask LayerZumbi;
+    private float distanciaDeGeracao = 3;
+    private float DistanciaDoJogadorParaGeracao = 20;
+    private GameObject player;
 
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        contadorTempo += Time.deltaTime;
-        if (contadorTempo >= tempoGerarZumbi)
+        if (Vector3.Distance(transform.position, player.transform.position) > DistanciaDoJogadorParaGeracao)
         {
-            Instantiate(zumbi, transform.position, transform.rotation);
-            contadorTempo = 0;
+
+            contadorTempo += Time.deltaTime;
+            if (contadorTempo >= tempoGerarZumbi)
+            {
+                StartCoroutine(GerarNovoZumbi());
+                contadorTempo = 0;
+            }
         }
 
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, distanciaDeGeracao);
+
+    }
+
+    IEnumerator GerarNovoZumbi()
+    {
+        Vector3 posicaoDeCriacao = AleatorizarPosicao();
+        Collider[] colisores = Physics.OverlapSphere(posicaoDeCriacao, 1, LayerZumbi);
+
+        while (colisores.Length > 0)
+        {
+            posicaoDeCriacao = AleatorizarPosicao();
+            colisores = Physics.OverlapSphere(posicaoDeCriacao, 1, LayerZumbi);
+            yield return null;
+        }
+
+        Instantiate(zumbi, posicaoDeCriacao, transform.rotation);
+    }
+
+    Vector3 AleatorizarPosicao()
+    {
+        Vector3 posicao = Random.insideUnitSphere * distanciaDeGeracao;
+        posicao += transform.position;
+        posicao.y = 0;
+
+        return posicao;
     }
 
 }

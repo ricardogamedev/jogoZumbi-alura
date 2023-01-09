@@ -674,6 +674,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zumbi: {fileID: 1063500868937916}
   tempoGerarZumbi: 1
+  LayerZumbi:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &-3710320254121199205
 MonoBehaviour:
   m_ObjectHideFlags: 0

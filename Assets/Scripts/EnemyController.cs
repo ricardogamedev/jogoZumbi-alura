@@ -9,6 +9,10 @@ public class EnemyController : MonoBehaviour, IKillable
     private CharacterAnimation enemyAnimation;
     private Status enemyStatus;
     public AudioClip SomDeMorte;
+    private Vector3 posicaoAleatoria;
+    private Vector3 direcao;
+    private float contadorVagar;
+    private float tempoEntrePosicoesAleatorias = 4;
 
 
     void Start()
@@ -20,17 +24,21 @@ public class EnemyController : MonoBehaviour, IKillable
         enemyStatus = GetComponent<Status>();
     }
 
-
     void FixedUpdate()
     {
         float distancia = Vector3.Distance(transform.position, player.transform.position);
 
-        Vector3 direcao = player.transform.position - transform.position;
-
         myEnemyMovement.Rotacionar(direcao);
+        enemyAnimation.Movimentar(direcao.magnitude);
 
-        if (distancia > 2.5)
+        if (distancia > 15)
         {
+            Vagar();
+        }
+
+        else if (distancia > 2.5)
+        {
+            direcao = player.transform.position - transform.position;
             myEnemyMovement.Movimentar(direcao, enemyStatus.Velocidade);
 
             //Quaternions are used to represent rotations. 
@@ -60,7 +68,7 @@ public class EnemyController : MonoBehaviour, IKillable
     public void TomarDano(int dano)
     {
         enemyStatus.Vida -= dano;
-        if(enemyStatus.Vida <= 0)
+        if (enemyStatus.Vida <= 0)
         {
             Morrer();
         }
@@ -70,5 +78,32 @@ public class EnemyController : MonoBehaviour, IKillable
     {
         Destroy(gameObject);
         AudioController.instancia.PlayOneShot(SomDeMorte);
+    }
+
+    void Vagar()
+    {
+        contadorVagar -= Time.deltaTime;
+        if (contadorVagar <= 0)
+        {
+            posicaoAleatoria = AleatorizarPosicao();
+            contadorVagar += tempoEntrePosicoesAleatorias;
+
+        }
+        bool ficouPertoOSuficiente = Vector3.Distance(transform.position, posicaoAleatoria) <= 0.05;
+
+        if (ficouPertoOSuficiente == false)
+        {
+            direcao = posicaoAleatoria - transform.position;
+            myEnemyMovement.Movimentar(direcao, enemyStatus.Velocidade);
+        }
+    }
+
+    Vector3 AleatorizarPosicao()
+    {
+        Vector3 posicao = Random.insideUnitSphere * 10;
+        posicao += transform.position;
+        posicao.y = transform.position.y;
+
+        return posicao;
     }
 }

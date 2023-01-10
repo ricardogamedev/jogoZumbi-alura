@@ -46,6 +46,7 @@ public class EnemyController : MonoBehaviour, IKillable
         }
         else
         {
+            direcao = player.transform.position - transform.position;
             enemyAnimation.Atacar(true);
         }
     }

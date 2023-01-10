@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, IKillable
 {
@@ -24,21 +23,14 @@ public class PlayerController : MonoBehaviour, IKillable
 
     void Update()
     {
-        float eixoX = Input.GetAxis("Horizontal");
-        float eixoZ = Input.GetAxis("Vertical");
+        float eixoX = Input.GetAxisRaw("Horizontal");
+        float eixoZ = Input.GetAxisRaw("Vertical");
         direcao = new Vector3(eixoX, 0, eixoZ);
 
         //magnitude é o tamanho do meu vetor. Nesse caso [1,0,0] então a magnitude é 1
         playerAnimation.Movimentar(direcao.magnitude);
 
-        if (playerStatus.Vida <= 0)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                SceneManager.LoadScene("motel");
-            }
-        }
-    }
+           }
     //ao invés de rodar a cada frame, ele roda a cada 0,02s por padrão
     void FixedUpdate()
     {
@@ -61,7 +53,6 @@ public class PlayerController : MonoBehaviour, IKillable
 
     public void Morrer()
     {
-        Time.timeScale = 0;
-        textoGameOver.SetActive(true);
+        scriptInterfaceController.GameOver();
     }
 }

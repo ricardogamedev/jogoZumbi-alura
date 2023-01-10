@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IKillable
+public class PlayerController : MonoBehaviour, IKillable, ICurable
 {
     private Vector3 direcao;
     public LayerMask mascaraChao;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour, IKillable
         //magnitude é o tamanho do meu vetor. Nesse caso [1,0,0] então a magnitude é 1
         playerAnimation.Movimentar(direcao.magnitude);
 
-           }
+    }
     //ao invés de rodar a cada frame, ele roda a cada 0,02s por padrão
     void FixedUpdate()
     {
@@ -54,5 +54,16 @@ public class PlayerController : MonoBehaviour, IKillable
     public void Morrer()
     {
         scriptInterfaceController.GameOver();
+    }
+
+    public void CurarVida(int quantidadeDeCura)
+    {
+        playerStatus.Vida += quantidadeDeCura;
+
+        if (playerStatus.Vida > playerStatus.VidaInicial)
+        {
+            playerStatus.Vida = playerStatus.VidaInicial;
+        }
+        scriptInterfaceController.AtualizarSliderVidaJogador();
     }
 }

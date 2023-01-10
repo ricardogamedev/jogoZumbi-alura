@@ -13,7 +13,8 @@ public class EnemyController : MonoBehaviour, IKillable
     private Vector3 direcao;
     private float contadorVagar;
     private float tempoEntrePosicoesAleatorias = 4;
-
+    private float porcentagemGerarKitMedico = 0.1f;
+    public GameObject KitMedicoPrefab;
 
     void Start()
     {
@@ -79,6 +80,7 @@ public class EnemyController : MonoBehaviour, IKillable
     {
         Destroy(gameObject);
         AudioController.instancia.PlayOneShot(SomDeMorte);
+        VerificarGeracaoKitMedico(porcentagemGerarKitMedico);
     }
 
     void Vagar()
@@ -106,5 +108,13 @@ public class EnemyController : MonoBehaviour, IKillable
         posicao.y = transform.position.y;
 
         return posicao;
+    }
+
+    void VerificarGeracaoKitMedico(float porcentagemGeracao)
+    {
+        if(Random.value <= porcentagemGeracao)
+        {
+            Instantiate(KitMedicoPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

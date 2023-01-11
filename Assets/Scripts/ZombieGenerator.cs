@@ -12,18 +12,28 @@ public class ZombieGenerator : MonoBehaviour
     private float distanciaDeGeracao = 3;
     private float DistanciaDoJogadorParaGeracao = 20;
     private GameObject player;
+    private int quantidadeMaximaDeZumbisVivos = 2;
+    private int quantidadeDeZumbisVivos;
+    private float tempoProximoAumentoDeDificuldade = 5;
+    private float contadorDeAumentarDificuldade;
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
+        contadorDeAumentarDificuldade = tempoProximoAumentoDeDificuldade;
+        for (int i = 0; i < quantidadeMaximaDeZumbisVivos; i++)
+        {
+            StartCoroutine(GerarNovoZumbi());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > DistanciaDoJogadorParaGeracao)
-        {
+        bool possoGerarZumbisPelaDistancia = Vector3.Distance(transform.position, player.transform.position) > DistanciaDoJogadorParaGeracao;
 
+        if (possoGerarZumbisPelaDistancia && quantidadeDeZumbisVivos < quantidadeMaximaDeZumbisVivos)
+        {
             contadorTempo += Time.deltaTime;
             if (contadorTempo >= tempoGerarZumbi)
             {
@@ -32,7 +42,11 @@ public class ZombieGenerator : MonoBehaviour
             }
         }
 
-
+        if (Time.timeSinceLevelLoad > contadorDeAumentarDificuldade)
+        {
+            quantidadeMaximaDeZumbisVivos++;
+            contadorDeAumentarDificuldade = Time.timeSinceLevelLoad + tempoProximoAumentoDeDificuldade;
+        }
     }
 
     private void OnDrawGizmos()
@@ -54,7 +68,9 @@ public class ZombieGenerator : MonoBehaviour
             yield return null;
         }
 
-        Instantiate(zumbi, posicaoDeCriacao, transform.rotation);
+        EnemyController Zumbi = Instantiate(zumbi, posicaoDeCriacao, transform.rotation).GetComponent<EnemyController>();
+        Zumbi.meuGerador = this;
+        quantidadeDeZumbisVivos++;
     }
 
     Vector3 AleatorizarPosicao()
@@ -66,4 +82,8 @@ public class ZombieGenerator : MonoBehaviour
         return posicao;
     }
 
+    public void DiminuirQuantidadeDeZumbisVivos()
+    {
+        quantidadeDeZumbisVivos--;
+    }
 }

@@ -12,6 +12,9 @@ public class InterfaceController : MonoBehaviour
     public Text TextoTempoDeSobrevivencia;
     public Text TextoPontuacaoMaxima;
     public float tempoPontuacaoSalva;
+    private int quantidadeDeZumbisMortos;
+    public Text TextoQuantidadeDeZumbisMortos;
+
     void Start()
     {
         scriptPlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
@@ -25,6 +28,12 @@ public class InterfaceController : MonoBehaviour
     public void AtualizarSliderVidaJogador()
     {
         SliderVidaJogador.value = scriptPlayerController.playerStatus.Vida;
+    }
+
+    public void AtualizarQuantidadeDeZumbisMortos()
+    {
+        quantidadeDeZumbisMortos ++;
+        TextoQuantidadeDeZumbisMortos.text = string.Format("X {0}", quantidadeDeZumbisMortos);
     }
 
     public void GameOver()
@@ -60,4 +69,6 @@ public class InterfaceController : MonoBehaviour
     {
         SceneManager.LoadScene("motel");
     }
+
+
 }

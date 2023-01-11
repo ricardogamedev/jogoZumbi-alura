@@ -15,6 +15,9 @@ public class EnemyController : MonoBehaviour, IKillable
     private float tempoEntrePosicoesAleatorias = 4;
     private float porcentagemGerarKitMedico = 0.1f;
     public GameObject KitMedicoPrefab;
+    private InterfaceController scriptInterfaceController;
+    [HideInInspector]
+    public ZombieGenerator meuGerador;
 
     void Start()
     {
@@ -23,6 +26,7 @@ public class EnemyController : MonoBehaviour, IKillable
         myEnemyMovement = GetComponent<CharacterMovement>();
         RandomizeZombies();
         enemyStatus = GetComponent<Status>();
+        scriptInterfaceController = GameObject.FindObjectOfType(typeof(InterfaceController)) as InterfaceController;
     }
 
     void FixedUpdate()
@@ -81,6 +85,8 @@ public class EnemyController : MonoBehaviour, IKillable
         Destroy(gameObject);
         AudioController.instancia.PlayOneShot(SomDeMorte);
         VerificarGeracaoKitMedico(porcentagemGerarKitMedico);
+        scriptInterfaceController.AtualizarQuantidadeDeZumbisMortos();
+        meuGerador.DiminuirQuantidadeDeZumbisVivos();
     }
 
     void Vagar()
@@ -89,7 +95,7 @@ public class EnemyController : MonoBehaviour, IKillable
         if (contadorVagar <= 0)
         {
             posicaoAleatoria = AleatorizarPosicao();
-            contadorVagar += tempoEntrePosicoesAleatorias;
+            contadorVagar += tempoEntrePosicoesAleatorias + Random.Range(-1f, 1f);
 
         }
         bool ficouPertoOSuficiente = Vector3.Distance(transform.position, posicaoAleatoria) <= 0.05;

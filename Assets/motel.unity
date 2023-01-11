@@ -2804,6 +2804,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 437952334}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &444415679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 444415680}
+  - component: {fileID: 444415682}
+  - component: {fileID: 444415681}
+  m_Layer: 5
+  m_Name: TextoZumbisMortos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &444415680
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444415679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1458438744}
+  m_Father: {fileID: 1447524488}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -74, y: -60}
+  m_SizeDelta: {x: 109.45349, y: 88.00055}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &444415681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444415679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ea47cf0c52fc7ca4e9a0e7d74bb6679f, type: 3}
+    m_FontSize: 52
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 52
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'X '
+--- !u!222 &444415682
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444415679}
+  m_CullTransparentMesh: 0
 --- !u!1001 &444502458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3762,6 +3841,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieGenerator (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6915226698133874002, guid: 6eb9a70c38a8e4e478666c7a6337473a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6915226698133874004, guid: 6eb9a70c38a8e4e478666c7a6337473a,
         type: 3}
       propertyPath: m_RootOrder
@@ -3770,7 +3854,7 @@ PrefabInstance:
     - target: {fileID: 6915226698133874004, guid: 6eb9a70c38a8e4e478666c7a6337473a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.3
+      value: -12.74
       objectReference: {fileID: 0}
     - target: {fileID: 6915226698133874004, guid: 6eb9a70c38a8e4e478666c7a6337473a,
         type: 3}
@@ -3780,7 +3864,7 @@ PrefabInstance:
     - target: {fileID: 6915226698133874004, guid: 6eb9a70c38a8e4e478666c7a6337473a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.3
+      value: -27.66
       objectReference: {fileID: 0}
     - target: {fileID: 6915226698133874004, guid: 6eb9a70c38a8e4e478666c7a6337473a,
         type: 3}
@@ -9634,6 +9718,7 @@ RectTransform:
   - {fileID: 874296487}
   - {fileID: 652422519}
   - {fileID: 781783560}
+  - {fileID: 444415680}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9659,6 +9744,81 @@ MonoBehaviour:
   TextoTempoDeSobrevivencia: {fileID: 1841409538}
   TextoPontuacaoMaxima: {fileID: 436035989}
   tempoPontuacaoSalva: 0
+  TextoQuantidadeDeZumbisMortos: {fileID: 444415681}
+--- !u!1 &1458438743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1458438744}
+  - component: {fileID: 1458438746}
+  - component: {fileID: 1458438745}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1458438744
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458438743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 444415680}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -39.4, y: 8.9}
+  m_SizeDelta: {x: 80.73857, y: 82.220215}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1458438745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458438743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 2dae9d90dde38dd42963f54ea1fd14c4, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1458438746
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458438743}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1469856166
 PrefabInstance:
   m_ObjectHideFlags: 0

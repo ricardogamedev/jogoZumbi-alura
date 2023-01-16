@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-
     private Rigidbody meuRigidbody;
 
     private void Awake()
@@ -21,5 +20,12 @@ public class CharacterMovement : MonoBehaviour
     {
         Quaternion novaRotacao = Quaternion.LookRotation(direcao);
         meuRigidbody.MoveRotation(novaRotacao);
+    }
+
+    public void Morrer()
+    {
+        meuRigidbody.constraints = RigidbodyConstraints.None;
+        meuRigidbody.velocity = Vector3.zero;
+        GetComponent<Collider>().enabled = false;
     }
 }

@@ -82,7 +82,10 @@ public class EnemyController : MonoBehaviour, IKillable
 
     public void Morrer()
     {
-        Destroy(gameObject);
+        Destroy(gameObject, 2);
+        enemyAnimation.Morrer();
+        myEnemyMovement.Morrer();
+        this.enabled = false;
         AudioController.instancia.PlayOneShot(SomDeMorte);
         VerificarGeracaoKitMedico(porcentagemGerarKitMedico);
         scriptInterfaceController.AtualizarQuantidadeDeZumbisMortos();
@@ -118,7 +121,7 @@ public class EnemyController : MonoBehaviour, IKillable
 
     void VerificarGeracaoKitMedico(float porcentagemGeracao)
     {
-        if(Random.value <= porcentagemGeracao)
+        if (Random.value <= porcentagemGeracao)
         {
             Instantiate(KitMedicoPrefab, transform.position, Quaternion.identity);
         }
